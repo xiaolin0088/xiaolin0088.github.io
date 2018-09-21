@@ -56,7 +56,7 @@ input + .card .photo {
   display: block;
   top: 0;
   left: 0;
-  background: url(img/600X600.jpg) no-repeat bottom center;
+  background: url(./img/600X600.jpg) no-repeat bottom center;
   background-size: cover;
   z-index: -1;
   border-radius: inherit;
