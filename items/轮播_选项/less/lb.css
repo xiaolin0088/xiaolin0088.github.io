@@ -1,0 +1,36 @@
+.slider {
+  width: 300px;
+  height: ;
+  margin: 0 auto;
+  position: relative;
+  background: white;
+}
+.slider .slider-content img:first-child {
+  position: relative;
+  opacity: 1;
+}
+.slider .slider-content img {
+  width: 300px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.slider-prev-next #prev,
+.slider-prev-next #next {
+  display: inline-block;
+  background: orange;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  line-height: 24px;
+  margin: auto;
+  height: 24px;
+}
+.slider-prev-next #prev {
+  left: 0px;
+}
+.slider-prev-next #next {
+  right: 0px;
+}

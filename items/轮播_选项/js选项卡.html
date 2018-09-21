@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="tab-btn">
+				<li class="active xxx">London</li>
+				<li class="xxx">Paris</li>
+				<li class="xxx">Tokyo</li>
+				<li class="xxx">Oslo</li>
+			</div>
+
+			<div class="tab-items">
+				<li class="active">London is the capital city of England.</li>
+				<li>Paris is the capital of France.</li>
+				<li>Tokyo is the capital of Japan.</li>
+				<li>Oslo is the capital of Norway.</li>
+			</div>
+
+		</div>
+
+		<style>
+			body {
+				background: lightgray;
+			}
+			
+			.box {
+				width: 600px;
+				margin: 0 auto;
+				color: green;
+			}
+			
+			.box .tab-btn li.active {
+				background: lightpink;
+			}
+			
+			.box .tab-btn li {
+				width: 25%;
+				float: left;
+				list-style: none;
+				background: lightgreen;
+				text-align: center;
+				line-height: 50px;
+			}
+			
+			.box .tab-items li.active {
+				background: lightpink;
+				display: block;
+			}
+			
+			.box .tab-items li {
+				list-style: none;
+				background: lightpink;
+				text-align: center;
+				line-height: 50px;
+				display: none;
+			}
+		</style>
+		
+		<script>
+			var btns = document.querySelectorAll('.box .tab-btn li');
+			var items = document.querySelectorAll('.box .tab-items li');
+			
+			//寻找兄弟元素
+			var siblings = function(ele){
+				var nodes = [];
+				var allnodes = ele.parentNode.children;
+				for (var i = 0; i < allnodes.length;i++) {
+					if(allnodes[i] !== ele)
+					{  
+						nodes.push(allnodes[i]);
+					}
+				}
+				return nodes;
+			};
+			
+			//某元素增加class
+			var addclass = function(element,className){
+				var oldClass = element.className;
+				var classarray = oldClass.split(' ');  // ["l","j","m"]
+				classarray.push(className);
+				element.className = classarray.join(' ').trim();
+			}
+			
+			//某元素删除class
+			var removeclass = function(element,className){
+				var oldClass = element.className;
+				var classarray = oldClass.split(' ');  //类 拆开成字符窜数组  放到classarray
+				if (classarray.indexOf(className) == -1) {
+					return;
+				}
+				else{
+					classarray.splice(classarray.indexOf(className),1);
+				}
+				
+				
+				if(classarray.length === 0){
+					element.removeAttribute('class');
+				}
+				else{
+					element.className = classarray.join(' ').trim();
+				}
+			};
+			
+			for(var i = 0;i < btns.length;i++){
+				btns[i].index = i;
+				btns[i].onclick = function(){
+					 	
+					//给 bths 元素 增加 class
+					addclass(this,'active');
+					
+			
+					var otherbtns = siblings(this); 
+					for(j = 0;j<otherbtns.length;j++){
+						removeclass(otherbtns[j],'active');
+					}
+					
+					addclass(items[this.index],'active');
+					
+					var otheritems = siblings(items[this.index]);
+					for(var h = 0;h<otheritems.length;h++){
+						removeclass(otheritems[h],'active');
+					}
+				}
+			}
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.js"></script>
+	</head>
+
+	<body>
+		
+		<div class="box">
+			<span>Jmmmmm</span>
+			<i></i>
+		</div>
+		
+		<style>
+			body{
+				background: rgba(255,200,250,.5);
+			}
+			.box{
+				margin: 100px auto;
+				width: 200px;
+				height: 50px;
+				z-index: 1;
+				position: relative;
+				border-radius: 10px;
+				overflow: hidden;
+				background: orange;
+			}
+			.box span{
+				display: block;
+				text-align: center;
+				line-height: 50px;				
+			}
+			span+i{
+				border-radius: 50%;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: -1;
+				display: block;
+				background: green;
+				width: 100px;
+				height: 100px;
+				transform: scale(0);
+				transition:transform .7s ;
+			}
+			span.active+i{
+				transform: scale(4);
+			}
+			
+		</style>
+	
+	
+	<script>
+			$('.box').hover(function(ev){
+				$('.box span+i').css(
+					{
+						top:(ev.clientY - $('.box').offset().top - 50),
+						left:(ev.clientX - $('.box').offset().left - 50)
+					}	
+				);
+				$('span').addClass('active');
+			},function(ev){
+				$('span').removeClass('active');
+			});
+	</script>
+	
+	
+	</body>
+
+</html>

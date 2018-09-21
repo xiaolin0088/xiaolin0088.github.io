@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: #cccccc;
+            width: 100%;
+            height: 100%;
+            
+        }
+        .box{
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .box>ul{
+            margin: 0;
+            padding: 0;
+            width: 1000%;
+            list-style: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .box>ul>li{
+            width: 10%;
+            height: 300px;
+            float: left;
+
+        }
+        .box>ul>li>img{
+            width: 100%;
+            height: 100%;
+        }
+        .box>ol{
+            width: 100%;
+            height: 50px;
+            background:rgba(255,255,255,0.5);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 50px;
+            list-style: none;
+
+        }
+        .box>ol>li{
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+        }
+       .box>ol>.now{
+            background: blue;
+        }
+        .left,.rigth{
+            display: block;
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            font-size: 50px;
+            color: #80806C;
+            line-height: 100px;
+            text-align: center;
+            background:rgba(255,255,255,0.5) ;
+            cursor: pointer;
+
+        }
+        .left{
+            left: 0;
+            top:50%;
+            margin-top :-50px;
+        }
+        .rigth{
+            right:0;
+            top:50%;
+            margin-top :-50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="img/1.jpg" alt=""/></li>
+            <li><img src="img/2.jpg" alt=""/></li>
+            <li><img src="img/3.jpg" alt=""/></li>
+        </ul>
+        <ol>
+            <li class="now"></li>
+            <li></li>
+            <li></li>
+        </ol>
+
+        <span class="left"> < </span>
+        <span class="rigth"> > </span>
+    </div>
+
+    <script>
+        var ul=document.querySelector(".box ul");
+        var lis1=document.querySelectorAll(".box ul li")[0];
+        var lis2=document.querySelectorAll(".box ol li");
+        var box=document.querySelector(".box");
+
+
+
+        var width=lis1.offsetWidth;
+        var index=0;
+        var tim=setInterval(carousels,2000);
+
+        function carousels(){
+            index++;
+            if(index > lis2.length-1){
+                index=0;
+            }
+
+            ul.style.left=-(index*width)+"px";//
+
+            but(lis2,index);
+        }
+
+        function but(lis,con){
+            for(var i=0;i<lis.length;i++){
+                lis[i].classList.remove("now");
+            }
+                lis[con].classList.add("now")
+
+        }
+        
+        box.onmouseover = function(){
+            clearInterval(tim);
+        };
+        box.onmouseout = function(){
+            clearInterval(tim);
+            tim=setInterval(carousels,2000);
+        }
+
+      for(var j=0;j<lis2.length;j++){
+          lis2[j].aaa=j;
+
+         lis2[j].addEventListener('click',function(){
+             index=this.aaa;
+             ul.style.left=-index*width+"px";
+             but(lis2,index);
+         })
+      }
+
+        var left=document.querySelector(".box .left");
+        var rigth=document.querySelector(".box .rigth");
+
+
+        left.onclick=function(){
+            index--;
+            if(index<0){
+                index=2
+            }
+            ul.style.left=-index*width+"px";
+            but(lis2,index);
+
+        }
+        rigth.onclick=function(){
+            index++;
+            if(index>lis2.length-1){
+                index=0;
+            }
+            ul.style.left = -index * width + "px";
+            but(lis2,index);
+        }
+
+
+
+    </script>
+</body>
+</html>

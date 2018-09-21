@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<script src="js/jquery.js"></script>
+
+		<style>
+			body {
+				background: rgba(200,255,10,.5);
+				width: 100%;
+				height: 100%;
+			}
+			
+			.box {
+				width: 500px;
+				height: 300px;
+				margin: 50px auto;
+				/*overflow: hidden;*/
+				position: relative;
+			}
+			
+			.box>ul {
+				margin: 0;
+				padding: 0;
+				width: 1000%;
+				list-style: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			.box>ul>li {
+				width: 10%;
+				height: 300px;
+				float: left;
+			}
+			
+			.box>ul>li>img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.box>ol {
+				width: 100%;
+				height: 50px;
+				background: rgba(255, 255, 255, 0.5);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				margin: 0;
+				padding: 0;
+				text-align: center;
+				line-height: 50px;
+				list-style: none;
+			}
+			
+			.box>ol>li {
+				width: 20px;
+				height: 20px;
+				background: #ccc;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			
+			.box>ol>.now {
+				background: blue;
+			}
+			
+			.left,
+			.right {
+				display: block;
+				width: 50px;
+				height: 100px;
+				position: absolute;
+				font-size: 50px;
+				color: #80806C;
+				line-height: 100px;
+				text-align: center;
+				background: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+			}
+			
+			.left {
+				left: 0;
+				top: 50%;
+				margin-top: -50px;
+			}
+			
+			.right {
+				right: 0;
+				top: 50%;
+				margin-top: -50px;
+			}
+			
+			.dian {
+				width: 100%;
+				height: 50px;
+				background: rgba(255, 255, 255, .3);
+				position: absolute;
+				left: 0px;
+				bottom: 0px;
+				text-align: center;
+				line-height: 50px;
+			}
+			
+			.dian i {
+				margin: 0 5px;
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background: green;
+				border-radius: 50%;
+			}
+			
+			.box .dian i.dianActive {
+				background: orange;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<ul>
+				<li><img src="img/1.jpg" alt="" /></li>
+				<li><img src="img/2.jpg" alt="" /></li>
+				<li><img src="img/3.jpg" alt="" /></li>
+			</ul>
+			<!--<ol>
+				<li class="now"></li>
+				<li></li>
+				<li></li>
+			</ol>-->
+
+			<span class="left"> < </span>
+			<span class="right"> > </span>
+
+			<div class="dian">
+				<!--<i></i>--></div>
+		</div>
+
+		<script>
+			//			$('.box ul li').eq(0);
+			//			$('.right').click(function(){
+			//				$('.box ul li').eq(0).css('margin-left','-500px');
+			//				$('.box ul li:eq(0)').animate({'margin-left':'-500px'},function(){
+			//					$('.box ul li').eq(0).css('margin-left','0').appendTo('.box ul');					
+			//				})
+			//			})
+
+			$('.box ul li').each(function() {
+				$('.box .dian').append('<i></i>');
+			});
+			$('.box .dian i').first().addClass('dianActive');
+
+			var old = $('.box ul li');
+
+			$('.box .dian i').click(function() {
+				$(this).addClass('dianActive').siblings().removeClass('dianActive');
+		
+					//判断插入的位置   大于0就放在右边  反之
+					
+					//只要大于0的 全部放到后面
+				if($(this).index() > old.index($('.box ul li:eq(0)'))) {
+					
+					//图片某个索引 后插入
+				old.eq($(this).index()).insertAfter('.box ul li:eq(0)'); 
+				
+				$('.box ul').animate({'margin-left':'-500px'},1000,function(){
+				$('.box ul').css('margin-left','0px').find('li').eq(0).appendTo('.box ul');
+				})}	
+				
+				else if($(this).index() < old.index($('.box ul li:eq(0)'))){
+					old.eq($(this).index()).insertBefore('.box ul li:eq(0)');
+					$('.box ul').css('margin-left','-500px').animate({'margin-left':'0px'},1000)	
+				}
+			});
+		
+			$('.left').click(function(){
+//				console.log('123');
+				var leftIndex = old.index($('.box ul li:eq(0)')) - 1;
+				if (leftIndex < 0){
+					leftIndex = old.length - 1;
+				}
+				
+				$('.dian i').eq(leftIndex).addClass('dianActive').siblings().removeClass('dianActive');
+				old.eq(leftIndex).insertBefore('.box ul li:eq(0)');
+				
+				$('.box ul').css('margin-left','-500px').animate({'margin-left':'0px'},1000)
+			});
+			
+			$('.right').click(function(){
+				var rightIndex = old.index($('.box ul li:eq(0)')) + 1 ;
+				if(rightIndex >= old.length){
+					rightIndex = 0 ;
+				}
+				
+				$('.box .dian i').eq(rightIndex).addClass('dianActive').siblings().removeClass('dianActive');
+				old.eq(rightIndex).insertAfter('.box ul li:eq(0)');
+				
+				$('.box ul').animate({'margin-left':'-500px'},1000,function(){
+					$('.box ul').css('margin-left','0px').find('li').eq(0).appendTo('.box ul');
+					
+				});
+			});
+			
+	</script>
+
+	</body>
+
+</html>

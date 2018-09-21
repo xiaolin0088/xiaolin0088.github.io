@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<select id="province">
+			<option value="请选择省份">请选择省份</option>
+		</select>
+		<select id="city">
+			<option value="请选择市区">请选择市区</option>
+		</select>
+		
+		<script>
+			var data;
+			$.ajax({
+				type:'get',
+				url:"./json/citys.json",
+				dataType: "json",
+				success:function(response){
+					data = response.provinces;
+//					console.log(data);
+					$.each(data, function(index,items) {
+						$('#province').append('<option value="' + items.provinceName + '">' + items.provinceName + '</option>')
+					});
+				}
+				
+			});	
+			
+			$('#province').change(function(e){
+				var _this = this;
+				$('#city').empty();
+				$.each(data, function(index,items) {
+					if(items.provinces === _this.items){
+						$('#city').append('<option value="' + items.citysName + '">' + items.citysName + '</option>')
+					}
+				});
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="less/gj-cj.css" />
+		<title></title>
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="jp"><img src="./img/turntable.png" /></div>
+			<div id="an"><img src="./img/pointer.png" /> </div>
+		</div>
+	</body>
+
+	<script>
+		var jp = document.getElementById('jp');
+		var an = document.getElementById('an');
+
+		var canrotate = true;
+
+		an.onclick = function() {
+			if(canrotate === true) {
+				canrotate = false;
+				var rd = Math.floor(Math.random() * 100);
+				//			console.log(rd);
+				var lv;
+				if(rd < 1) {
+					lv = {
+						code: 1,
+						text: "一等奖"
+					};
+				} else if(rd < 5) {
+					lv = {
+						code: 2,
+						text: "2等奖"
+					};
+				} else if(rd < 13) {
+					lv = {
+						code: 3,
+						text: "3等奖"
+					};
+				} else if(rd < 21) {
+					lv = {
+						code: 4,
+						text: "4等奖"
+					};
+				} else if(rd < 35) {
+					lv = {
+						code: 5,
+						text: "5等奖"
+					};
+				} else if(rd < 50) {
+					lv = {
+						code: 6,
+						text: "6等奖"
+					};
+				} else {
+					lv = {
+						code: 7,
+						text: "谢谢参与"
+					};
+				}
+
+				//			console.log(lv);
+
+				var jdangle = 30 + (360 / 7) * (lv.code - 1);
+
+				jp.style.transition = 'all 3s';
+				jp.style.transform = 'rotate(' + (jdangle + 360 * 3) + 'deg)';
+
+				setTimeout(function() {
+					jp.style.transition = 'all 0s';
+					jp.style.transform = 'rotate(' + jdangle + 'deg)';
+					alert(lv.text);
+					canrotate = true;
+				}, 3000)
+			}
+		}
+	</script>
+
+</html>

@@ -1,0 +1,21 @@
+#box {
+  width: 650px;
+  height: 600px;
+  background: url(../img/turntable-bg.jpg) no-repeat;
+  margin: 0 auto;
+  position: relative;
+}
+#box #jp {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  top: 60px;
+  left: 116px;
+}
+#box #an {
+  width: 174px;
+  height: 228px;
+  position: absolute;
+  top: 150px;
+  left: 255px;
+}

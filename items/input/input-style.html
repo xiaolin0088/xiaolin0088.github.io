@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<form method="get" action="">
+			<label> 
+				<input type="radio" name="aa"/>A
+			</label>
+			<label>
+				<input type="radio" name="aa"/>B
+			</label>
+			
+			<input type="checkbox" />C
+			<input type="checkbox" />D
+			
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+			
+			<input type="submit" />
+		</form>
+		
+		<style>
+			input:checked{
+				width: 30px;
+				height: 30px;
+			}
+		</style>-->
+		<label>
+			<input type="checkbox" />
+			<i class="bg"><i class="btn"></i></i>
+		</label>
+		
+		<style>
+			i.bg {
+				width: 50px;
+				height: 30px;
+				display: block;
+				background: #CCCCCC;
+				overflow: hidden;
+				border-radius: 30px;
+				transition: background .5s;
+			}
+			i.btn {
+				display: block;
+				width: 20px;
+				height: 20px;
+				background: darkorchid;
+				margin: 5px;
+				position: relative;
+				left: 0px;
+				top: 0px;
+				transition: left .5s;
+				border-radius: 50%;	
+			}
+			input[type=checkbox] {
+				display: none;
+			}
+			input:checked+i.bg i.btn {
+				left: 20px;
+			}
+			input:checked+.bg{
+				background: #999999;
+			}
+		</style>
+		
+	</body>
+</html>

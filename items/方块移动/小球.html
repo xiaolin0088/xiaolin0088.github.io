@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="circle"></div>
+		</div>
+		<style>
+			body {
+				background: yellowgreen;
+				margin: 0px;
+				padding: 0px;
+				/*height: 500px;*/
+			}
+			
+			.box {
+				margin: 0 auto;
+				left: 0px;
+				right: 0px;
+				width: 500px;
+				height: 500px;
+				border: 10px solid green;
+				background: pink;
+				position: relative;
+			}
+			
+			.circle {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background: red;
+				border: 3px solid yellow;
+			}
+		</style>
+
+		<script>
+			var circle = document.querySelector(".circle");
+			var circleStyle = circle.currentStyle ? circle.currentStyle : window.getComputedStyle(circle, null);
+
+			var circleX = parseInt(circleStyle.left);
+			var circleY = parseInt(circleStyle.top);
+			var v = 5;
+			var direction = 'right';
+
+			var moveleft = function() {
+				circleX -= v;
+				circle.style.left = circleX + 'px';
+			}
+
+			var moveright = function() {
+				circleX += v;
+				circle.style.left = circleX + 'px';
+			}
+
+			var movetop = function() {
+				circleY -= v;
+				circle.style.top = circleY + 'px';
+			}
+
+			var movebottom = function() {
+				circleY += v;
+				circle.style.top = circleY + 'px';
+			}
+
+			var check = function() {
+				if(circleX >= 500 - 30) {
+					direction = 'left'
+				}
+				if(circleX <= 0) {
+					direction = 'right'
+				}
+				if(circleY <= 0) {
+					direction = 'bottom'
+				}
+				if(circleY >= 500 - 20) {
+					direction = 'top'
+				}
+			}
+
+			var clock = setInterval(function() {
+				check();
+
+				if(direction === 'left') {
+					moveleft();
+				} else if(direction === 'right') {
+					moveright();
+				} else if(direction === 'top') {
+					movetop();
+				} else if(direction === 'bottom') {
+					movebottom();
+				}
+
+			}, 41)
+
+			document.body.onkeydown = function(ev) {
+				console.log(ev.keyCode);
+				switch(ev.keyCode) {
+					case 37:
+						direction = 'left'
+						break;
+					case 38:
+						direction = 'top'
+						break;
+					case 39:
+						direction = 'right'
+						break;
+					case 40:
+						direction = 'bottom'
+						break;
+				}
+			}
+		</script>
+	</body>
+
+</html>

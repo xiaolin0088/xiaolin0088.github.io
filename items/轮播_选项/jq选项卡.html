@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="./js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="btn">	
+					<li class="active">000</li>
+					<li>111</li>
+					<li>222</li>
+					<li>333</li>
+			</div>
+			<div class="item">
+					<li class="active">000</li>
+					<li>1444</li>
+					<li>2555</li>
+					<li>3666</li>
+			</div>			
+		</div>
+		
+		<style>
+			body{
+				margin: 0px;
+				background: lightgrey;
+			}
+			ul,ol,li{
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			.box{
+				width: 400px;				
+				margin: 0 auto;
+			}
+			.box .btn li{
+				background: green;
+				width: 25%;
+				float: left;
+				text-align: center;
+				line-height: 50px;
+			}
+			.box .btn li.active {
+				background: lightpink;
+			}
+			.box .item li{
+				background: lightpink;
+				text-align: center;
+				line-height: 50px;
+				display: none;
+			} 
+			               
+			.box .item li.active{
+				display: block;
+				background: lightpink;
+				transition: all 1s;
+			}
+		</style>
+		
+		<script>
+			
+//			$('.box .btn li').click(function(){
+//				console.log($(this).index());
+//				$('.box .item li').eq($(this).index()).show().siblings().hide();
+//			})
+			
+			$('.box .btn li').click(function(){
+				console.log($(this).index());
+				$('.box .item li').eq($(this).index()).addClass('active').siblings().removeClass('active');
+				$(this).addClass('active').siblings().removeClass('active');
+			})
+		
+		
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Puuuuub瀑布墙</title>
+
+		<!--<link rel="stylesheet" href=" ./js/bootstrap.js" />-->
+		<link rel="stylesheet" href="./css/bootstrap.css" />
+
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+		
+		<!--....................error-->
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col1"></div>
+				<div class="col-xs-3 col2"></div>
+				<div class="col-xs-3 col3"></div>
+				<div class="col-xs-3 col4"></div>
+			</div>
+
+			<button type="button" class="btn btn-success center-block btn-lg " onclick="more()">Moreeeeeee...</button>
+		</div>
+
+		<style>
+			body {
+				/*background: rgba(255,132,103,.5);*/
+				background: linear-gradient(30deg, rgba(255, 132, 103, .5), rgba(132, 255, 50, .5));
+			}
+		</style>
+
+		<script>
+			var pageIndex = 1;
+
+			function more() {
+				$.ajax({
+						type: "get",
+						url: "https://www.apiopen.top/meituApi",
+//						{
+//							'page': pageIndex
+//						},
+						success:function(response) {
+							var dt = response.data;
+							$.each(dt, function(index, items) {
+								
+								if(index % 4 === 0) {					
+									$('.col1').append('<img src="' + items.url + '" class="img-thumbnail">');
+								} else if(index % 4 === 1) {
+									$('.col2').append('<img src="' + items.url + '" class="img-thumbnail">');
+								} else if(index % 4 === 2) {
+									$('.col3').append('<img src="' + items.url + '" class="img-thumbnail">');
+								} else if(index % 4 === 3) {
+									$('.col4').append('<img src="' + items.url + '" class="img-thumbnail">');
+								}
+							}
+						}
+						pageIndex++;
+				});
+					
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box">
+				<a href="">
+					<div class="border"></div>
+					
+					<div class="flowers">
+						<img src="img/flowers-01.jpg"/>	
+					</div>
+					
+					<div class="textcenter">
+						<div class="text">
+							<h3>123411111</h3>
+							<p>5678</p>
+						</div>
+					</div>
+				</a>			
+		</div>
+		
+		<br /><br /><br />
+		<hr />
+		
+		<!----------------one-------------------------->
+		<div class="bigbox2">
+			<div class="box2">
+					<a href="">
+						<div class="border2"></div>
+						
+						<div class="flowers2">
+							<img src="img/flowers-01.jpg"/>	
+						</div>
+						
+						
+						<div class="textcenter2">
+							<div class="text2">
+								<h3>123411111</h3>
+								<p>5678</p>
+							</div>
+						</div>
+					</a>			
+			</div>
+		</div>
+		
+		<br /><br /><br />
+		<hr />
+		
+	<!--	------------------three---------------------------->
+		<div class="bigbox3">
+			<div class="box3">
+					<a href="">
+						<div class="border3"></div>
+						
+						<div class="flowers3">
+							<img src="img/flowers-01.jpg"/>	
+						</div>
+											
+						<div class="textcenter3">
+							<div class="text3">
+								<h3>123411111</h3>
+								<p>5678</p>
+							</div>
+						</div>
+					</a>			
+			</div>
+		</div>
+		
+		<br /><br /><br />
+		<hr />
+		
+		
+		<style>
+			
+			
+			/*--------------------one--------------------*/
+			
+      		div.box{
+      			width: 230px;
+      			height: 230px;
+      			position: relative;     			
+      		}
+      		div.box a .border{
+      			border: 10px solid #ecab18;
+			    border-right-color: #1ad280;
+			    border-bottom-color: #1ad280;
+			    width: 230px;
+      			height: 230px;
+				border-radius: 50%;
+				transition: transform 1s;
+      		}
+      		div.box a .flowers{
+      			position: absolute;
+      			top: 10px;
+      			left: 10px;
+      			
+      		}
+      		div.box a .flowers img{
+      			width: 230px;
+      			height: 230px;
+      			border-radius: 50%;	
+      		}
+      		div.box a .textcenter{
+      			width: 230px;
+      			height: 230px;
+      			position: absolute;
+      			top: 10px;
+      			left: 10px;
+      			background: rgba(0,0,0, .6);
+      			border-radius: 50%;
+      			opacity: 0;
+      			transition: all .5s;
+      		}
+      		div.box a .textcenter .text{
+      			text-decoration: none;
+      			color: white;
+      			text-align: center;
+      			padding: 20px 0px;
+      		}
+      		div.box:hover .border{
+      			transform: rotate(180deg);     			
+      		}
+      		div.box:hover  .textcenter{
+      			opacity: 1;
+      		}
+      		
+      		/*-----------------two/start------------------*/
+      		div.box2{
+      			width: 230px;
+      			height: 230px;
+      			transition: transform 1s;
+      			position: relative;     			
+      		}
+      		div.box2 a .border2{
+      			box-shadow: 0px 0px 0px 22px rgba(255,255,255, .3) inset ;
+      			/*border: 10px solid #ecab18;*/
+			    border-right-color: #1ad280;
+			    border-bottom-color: #1ad280;
+			    width: 230px;
+      			height: 230px;
+				border-radius: 50%;				
+				box-sizing: border-box;
+      		}
+      		div.box2 a .flowers2{
+      			position: absolute;
+      			top: 0px;
+      			left: 0px;
+      			z-index: -1;
+      			transition: transform .5s;
+      		}
+      		div.box2 a .flowers2 img{
+      			width: 230px;
+      			height: 230px;
+      			border-radius: 50%;	
+      		}
+      		div.box2 a .textcenter2{
+      			width: 230px;
+      			height: 230px;
+      			position: absolute;
+      			top: 0px;
+      			right: -250px;
+      			background: rgba(0,0,0, .6);
+      			border-radius: 50%;
+      			visibility: hidden;
+            	/*	display: none;*/
+      			transition: all .5s;
+      			opacity: 0;
+      		}
+      		div.box2 a .textcenter2 .text2{
+      			text-decoration: none;
+      			color: white;
+      			text-align: center;
+      			padding: 20px 0px;
+      		}
+      		div.bigbox2{
+      			width: 230px;
+      			height: 230px;
+      		}
+      		div.bigbox2:hover div.box2 a .flowers2{ 
+      			transform: rotate(-90deg);
+      		}
+      	    div.bigbox2:hover div.box2 a .textcenter2{
+      	    	right: 0px;
+      	    	/*display: block;*/
+      	    	visibility: visible;
+      	    	opacity: 1;
+      	    }
+      		
+      		
+      		/*------------------three--------------------*/
+      		.bigbox3{
+      			margin: 0 auto;
+      		}
+      		div.box3{
+      			width: 230px;
+      			height: 230px;
+      			transition: transform 1s;
+      			position: relative;
+      			     			
+      		}
+      		div.box3 a .border3{
+      			box-shadow: 0px 0px 0px 22px rgba(255,255,255, .3) inset ;
+      			/*border: 10px solid #ecab18;*/	
+			    width: 230px;
+      			height: 230px;
+				border-radius: 50%;	
+				transform: scale(1);			
+				box-sizing: border-box;
+      		}
+      		div.box3 a .flowers3{
+      			position: absolute;
+      			top: 0px;
+      			left: 0px;
+      			z-index: 1;
+      			
+      			transition: transform .5s;
+      		}
+      		div.box3 a .flowers3 img{
+      			width: 230px;
+      			height: 230px;
+      			border-radius: 50%;	
+      		}
+      		div.box3 a .textcenter3{
+      			width: 230px;
+      			height: 230px;
+      			position: absolute;
+      			top: 0px;
+      			right: -250px;
+      			background: rgba(0,0,0, .6);
+      			border-radius: 50%;
+      			visibility: hidden;
+            	/*	display: none;*/
+      			transition: all .5s;
+      			opacity: 0;
+      			
+      		}
+      		div.box3 a .textcenter3 .text3{
+      			text-decoration: none;
+      			color: white;
+      			text-align: center;
+      			padding: 20px 0px;
+      		}
+      		div.bigbox3{
+      			width: 230px;
+      			height: 230px;
+      		}
+      		div.bigbox3:hover div.box3 a .flowers3{ 
+      			transform: rotate(-90deg);
+      			transform: scale(.5);
+      			right: -320px;
+      		}
+      	    div.bigbox3:hover div.box3 a .textcenter3{
+      	    	right: 0px;
+      	    	/*display: block;*/
+      	    	visibility: visible;
+      	    	opacity: 1;
+      	    }
+      		  		
+		</style>
+		
+	</body>
+</html>

@@ -1,0 +1,41 @@
+.slider{
+    width: 300px;
+    height: ;
+    margin: 0 auto;
+    position: relative;
+    background: white;
+    .slider-content{
+        
+        img:first-child{
+            position: relative;
+            opacity: 1;
+        }
+        img{
+            width: 300px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            opacity: 0;
+            transition: opacity .5s;
+        }
+    }
+}
+
+.slider-prev-next{
+   #prev,#next {
+       display: inline-block;
+       background: orange;
+       position:absolute;
+       top: 0px;
+       bottom: 0px;
+       line-height: 24px;
+       margin: auto;
+       height: 24px;      
+   }   
+   #prev{
+       left: 0px;
+   }
+     #next{
+       right: 0px;
+   }
+}
