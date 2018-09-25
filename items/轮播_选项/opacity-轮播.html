@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="less/lb.0.1.css " />
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<div id="image">
+				<img src="./img/1.jpg"/>
+				<img src="./img/2.jpg"/>
+				<img src="./img/3.jpg"/>
+				<img src="./img/4.jpg"/>
+			</div>
+			
+			<div class="prev-next">
+				<span id="prev"><<</span>
+				<span id="next">>></span>
+			</div>
+			
+			<div class="paganation">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</div>
+		</div>
+		
+		<script>
+			var box = document.getElementById('box');
+			var prev = document.getElementById('prev');
+			var next = document.getElementById('next');
+			var imgs = box.getElementsByTagName('img');
+			var lis = box.getElementsByTagName('li');			
+			var current = 0;
+			
+			function intimage(){
+				for(var i = 0;i < imgs.length; i++){
+					imgs[i].style.opacity = '0' ;
+				}
+			}
+			function intli(){
+				for(var i = 0;i < lis.length; i++){
+					lis[i].style.background = 'orange' ;
+				}
+			}
+			
+			
+			function nexts(){
+				current++;
+				if(current > imgs.length-1){
+					current = 0;
+				}
+				
+				intimage();
+				imgs[current].style.opacity = '1';
+				
+				intli();
+				lis[current].style.background = 'green';
+	
+			}
+			function prevs(){
+				current--;
+				if(current < 0){
+					current = imgs.length-1;
+				}
+				
+				intimage();
+				imgs[current].style.opacity = '1';
+				
+				intli();
+				lis[current].style.background = 'green';
+	
+			}
+			
+			next.onclick = function(){
+				nexts();
+			}
+			prev.onclick = function(){
+				prevs();
+			}
+			
+			for(var h = 0;h<lis.length;h++){
+				lis[h].index = h;
+			}
+			
+			for(j = 0; j < lis.length; j++){
+				lis[j].onclick = function(){
+					intimage();
+					imgs[this.index].style.opacity = '1';
+					
+					console.log(this.innerText - 1);
+					
+					intli();
+					this.style.background = 'green';
+					
+					
+				}
+			}
+			
+		</script>
+	</body>
+</html>
