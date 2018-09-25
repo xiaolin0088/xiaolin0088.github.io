@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body id="Pagebody" style="background:pink">
+<script language="javascript">
+
+function ChangeBgColor(colorIndex)
+{
+	
+	var dombody = document.getElementById("Pagebody");
+	if(dombody == null)
+	 {
+	   return;	 
+	 }
+	 
+	 else
+	  {
+		switch(colorIndex)
+		  {
+			  case 1: dombody.style.background="salmon";  
+			  break;
+			  
+			  case 2: dombody.style.background="cornflowerblue";  
+			  break;
+			  
+			  case 3: dombody.style.background="green";  
+			  break;
+			  
+			  case 4: dombody.style.background="plum";  
+			  break;
+			  
+			  default:dombody.style.background="aquamarine";  
+			  break;
+		  }  
+	  }
+	
+}
+
+</script>
+
+        <div style="width:100px; height:20px; text-align:center; background-color:salmon;" onclick="return ChangeBgColor( 1 )"></div>
+        
+        <div style="width:100px; height:20px; text-align:center; background-color:cornflowerblue;" onclick="return ChangeBgColor( 2 )"></div>
+        
+        <div style="width:100px; height:20px; text-align:center; background-color:green;" onclick="return ChangeBgColor( 3 )"></div>
+        
+        <div style="width:100px; height:20px; text-align:center; background-color:plum;" onclick="return ChangeBgColor( 4 )"></div>
+
+
+</body>
+</html>
