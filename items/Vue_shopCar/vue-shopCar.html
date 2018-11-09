@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>我的购物车</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        body{
+            background:rgba(245, 245, 245, 0.931);
+        }
+        #box{
+            border: 2px orange dashed;
+        }
+        img{
+            width: 100%;
+        }
+        .tab .tr_title{
+            text-align: center;
+            font-size: 20px;
+        }
+        .tab .tr_content img{
+            width: 25%;
+        }
+        .tab .tr_content{
+            /* vertical-align:middle; */
+            text-align: center; 
+        }
+        /* .tab .tr_content td{
+            background: lightgray;
+        } */
+        .myfoot{
+            overflow: hidden;
+        }
+
+
+        /* ======btn-style======= */
+
+        i.bg {
+            width: 50px;
+            height: 30px;
+            display: block;
+            background: lightgray;
+            overflow: hidden;
+            border-radius: 30px;
+            transition: background .5s;
+        }
+        i.btn {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: darkorchid;
+            margin: 5px;
+            position: relative;
+            left: 0px;
+            top: 0px;
+            transition: left .5s;
+            border-radius: 50%;	
+        }
+        input[type=checkbox] {
+            display: none;
+        }
+        input:checked+i.bg i.btn {
+            left: 20px;
+        }
+        input:checked+.bg{
+            background: #747474;
+        }
+
+            
+        </style>
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+  </head>
+    <body>
+    <h1>你好，世界！</h1>
+    <div class="container" id="box">
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                <h3 class="text-center">购物车</h3>
+            </div>
+        </div>
+        <table class="table table-hover tab">
+            <!-- On cells (`td` or `th`) -->
+            <tr class="tr_title">
+                <td class="active"></td>
+                <td class="active">图片</td>
+                <td class="success">商品名称</td>
+                <td class="warning">单价</td>
+                <td class="danger">数量</td>
+                <td class="info">总计</td>
+            </tr>
+            
+            <tr class="tr_content" v-for="item in goods" :key="item.id">
+                <td>
+                    <label>
+                        <input type="checkbox" name="" id="" v-model="item.checked">
+                        
+                        <i class="bg"><i class="btn"></i></i>
+                    </label
+                    
+                </td>
+                <td >
+                    <img :src="item.thumb">
+                </td>
+                <td >{{item.title}}</td>
+                <td >{{item.price.toFixed(2)}}</td>
+                <td >  
+                    <button @click="quantityMinus(item)">-</button>
+                    <span>{{item.quantity}}</span>
+                    <button @click="item.quantity++">+</button>
+                </td>
+                <td >{{item.price * item.quantity}}</td>
+            </tr>
+
+        </table>
+
+        <div class="panel panel-default">
+            <div class="panel-footer myfoot">
+                <button type="button" class="btn btn-primary pull-left" @click="delItem()">删除</button>
+                <button type="button" class="btn btn-primary pull-right">结算,共{{total}}元</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#box',
+            data:{
+                goods:[]
+            },
+            created:function(){
+                axios.get('./shopping-cart.json')
+                .then((response) =>{
+                    console.log(response.data.products);
+                    this.goods = response.data.products;
+                })
+            },
+            methods:{
+                quantityMinus:function(item){
+                    if(item.quantity > 1){
+                        item.quantity--;
+                    } 
+                },
+                removeItem: function (item) {
+                    // console.log('item', item)
+                    this.goods.splice(this.goods.indexOf(item), 1)
+                },
+                delItem:function(){
+                    var InputTrue = []
+                    this.goods.forEach(element => {
+                        if(element.checked){
+                            InputTrue.push(element);
+                        }
+                    });
+                    InputTrue.forEach(element => {
+                        this.removeItem(element);
+                    });
+                }
+            },
+            computed:{
+                total: function(){
+                    var total = 0;
+                    this.goods.forEach(element => {
+                        total += element.price * element.quantity;
+                    });
+                    return total;
+                    // console.log(total)
+                },
+                checkInput:function(){
+                    this.products.filter(function(item){
+                        return item.checked;
+                    });
+                }
+            }
+        })
+    </script>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
